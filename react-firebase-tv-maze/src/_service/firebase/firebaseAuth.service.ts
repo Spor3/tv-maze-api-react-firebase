@@ -1,22 +1,49 @@
 import { app } from "./firebase.config";
-import { Navigate } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 
 const auth = getAuth(app);
 
-export const registerUser = (email:string, password:string) => {
+export const registerUser = async (email: string, password: string, name: string) => {
 
-    createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
+
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password)
     // Signed in 
     const user = userCredential.user;
-    console.log(user, userCredential);
-
-  })
-  .catch((error) => {
-    const errorCode = error.code;
+    //Set dissplayName
+    updateProfile(user, { displayName: name })
+  } catch (error: any) {
     const errorMessage = error.message;
-    console.log(errorCode, errorMessage)
-  });
+    throw errorMessage;
 
+  }
+}
+
+export const isUserConneted = () => {
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+
+      const { uid, displayName } = user;
+      const currentUser = { uid, displayName }
+      localStorage.setItem('user', JSON.stringify(currentUser))
+
+    } else {
+      localStorage.setItem('user', '')
+    }
+  });
+}
+
+
+export const loginUser = async (email: string, password: string) => {
+
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password)
+    
+  } catch (error: any) {
+    const errorMessage = error.message;
+    throw errorMessage;
+
+  }
 }
