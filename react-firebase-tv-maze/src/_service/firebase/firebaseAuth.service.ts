@@ -11,7 +11,11 @@ export const registerUser = async (email: string, password: string, name: string
     // Signed in 
     const user = userCredential.user;
     //Set dissplayName
-    updateProfile(user, { displayName: name })
+    await updateProfile(user, { displayName: name })
+
+    const {uid, displayName } = user;
+
+    localStorage.setItem('user', JSON.stringify({uid, displayName}))
   } catch (error: any) {
     const errorMessage = error.message;
     throw errorMessage;
@@ -25,6 +29,7 @@ export const isUserConneted = () => {
     if (user) {
 
       const { uid, displayName } = user;
+      console.log(user)
       const currentUser = { uid, displayName }
       localStorage.setItem('user', JSON.stringify(currentUser))
 

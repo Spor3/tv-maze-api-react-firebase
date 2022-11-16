@@ -49,11 +49,11 @@ export default function Search() {
             </Form>
             <Container>
             <Row>
-                {shows.map(e => {
+                {shows.map((e, i) => {
                     return (
                         <Col key={e.id} className="d-flex justify-content-center mb-4">
                             <Link to={'/search/' + e.id}>
-                            <Card style={{ width: '18rem' }} >
+                            <Card style={{ width: '18rem', animationDelay:  (100 * i) + 'ms'}} className="animate-left-in">
                                 <Card.Img variant="top" src={e.image} />
                                 <Card.Body>
                                     <Card.Title>{e.title}</Card.Title>

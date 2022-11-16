@@ -262,9 +262,26 @@ $main-yellow-rgb-015: rgba(189, 187, 73, 0.1) !default;
       translate: 0 0;
     }
   }
+
+  @keyframes in-left-keyframes {
+    0% {
+      opacity: 0; 
+      translate: -50% 0;
+    }
+    100% {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
   
   .animate-in {
     animation-name: in-keyframes;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+  }
+
+  .animate-left-in {
+    animation-name: in-left-keyframes;
     animation-duration: 0.5s;
     animation-fill-mode: both;
   }

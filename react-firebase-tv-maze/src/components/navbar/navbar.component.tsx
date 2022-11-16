@@ -13,7 +13,7 @@ const MyNavbar = ({user}:any) => {
         <Navbar.Toggle  aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="animate-in" style={{animationDelay: "800ms"}} id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link><BubblyLink to='/'   colorStart = "black" colorEnd = "blue">Search</BubblyLink></Nav.Link>
+            <Nav.Link><BubblyLink to='/' /* colorStart = "black" colorEnd = "blue" */>Search</BubblyLink></Nav.Link>
             <Nav.Link ><BubblyLink to='/favorites'>Favorites</BubblyLink></Nav.Link>
           </Nav>
         </Navbar.Collapse>

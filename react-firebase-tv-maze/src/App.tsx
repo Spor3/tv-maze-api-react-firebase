@@ -10,6 +10,7 @@ import ProtectedRoute from './components/protectedPage/protectedPage.component';
 import Register from './pages/register/register.page'
 import Detail, { loader as dataLoader } from './pages/detail/detail.page'
 import Search from './pages/search/search.page'
+import Favorite, { loader as favoriteLoader} from './pages/favorite/favorite.component';
 import { BubblyContainer } from 'react-bubbly-transitions';
 import Login from './pages/login/login.page';
 
@@ -17,9 +18,7 @@ import Login from './pages/login/login.page';
 import './App.scss';
 import MyNavbar from './components/navbar/navbar.component';
 
-
 isUserConneted();
-
 const router = createBrowserRouter([
   {
     path: '/login',
@@ -40,7 +39,8 @@ const router = createBrowserRouter([
   },
   {
     path: '/favorites',
-    element: <ProtectedRoute user={localStorage.getItem('user')}><MyNavbar user={localStorage.getItem('user')} /><>prefear</></ProtectedRoute>
+    element: <ProtectedRoute user={localStorage.getItem('user')}><Favorite /></ProtectedRoute>,
+    loader: favoriteLoader
   },
   {
     path: '*',
