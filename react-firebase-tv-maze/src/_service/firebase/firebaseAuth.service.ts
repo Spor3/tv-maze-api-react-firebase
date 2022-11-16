@@ -1,4 +1,5 @@
 import { app } from "./firebase.config";
+import { takeFavorite } from "./firebasesDb.service";
 import { getAuth, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 
 const auth = getAuth(app);
@@ -32,7 +33,7 @@ export const isUserConneted = () => {
       console.log(user)
       const currentUser = { uid, displayName }
       localStorage.setItem('user', JSON.stringify(currentUser))
-
+      takeFavorite(uid);
     } else {
       localStorage.setItem('user', '')
     }

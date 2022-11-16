@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 //Imports Service
 import { isUserConneted } from './_service/firebase/firebaseAuth.service'
+import { takeFavorite } from './_service/firebase/firebasesDb.service';
 
 //Imports Components
 import ProtectedRoute from './components/protectedPage/protectedPage.component';

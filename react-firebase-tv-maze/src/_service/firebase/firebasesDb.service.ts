@@ -22,8 +22,8 @@ export const takeFavorite = (uid:string) => {
   for (const iterator in data) {
     favorites.push(data[iterator])
   }
-
-  console.log(favorites)
+  const favoriteStorage = JSON.stringify(favorites);
+  localStorage.setItem('favorites', favoriteStorage)
 });
 }
 

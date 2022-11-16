@@ -1,12 +1,14 @@
+import { useLoaderData } from "react-router-dom";
 import MyNavbar from "../../components/navbar/navbar.component";
 import { takeFavorite } from "../../_service/firebase/firebasesDb.service";
 
 export async function loader() {
-    const { uid } = JSON.parse(localStorage.getItem('user')!)
+    const favoriteData = JSON.parse(localStorage.getItem('favorites') || '');
     
-    return takeFavorite(uid);
+    return favoriteData;
 }
 const Favorite = () => {
+    const favoriteData = useLoaderData();
 
     return (<MyNavbar user={localStorage.getItem('user')} />)
 
