@@ -39,8 +39,8 @@ const SearchCard = ({e,i}:PropsCard) => {
   return (
     <Col className="d-flex justify-content-center mb-4">
         <Card
-          style={{ width: "18rem", animationDelay: 100 * i + "ms" }}
-          className="animate-left-in"
+          style={{ width: "18rem", animationDelay: 25 * i + "ms" }}
+          className="animate-in"
         >
           <Link to={"/search/" + e.id}>
           <Card.Img variant="top" src={e.image?.medium} />

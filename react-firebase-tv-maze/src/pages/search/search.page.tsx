@@ -41,7 +41,7 @@ export default function Search() {
     return (
         <ProtectedRoute user={localStorage.getItem('user')}> 
     <MyNavbar user={localStorage.getItem('user')} activeLink="search" />
-        <Container>
+        <Container className="min-h-85">
             <Form onSubmit={handleOnSubmit}>
                 <Form.Group className="mb-3 d-flex" controlId="formBasicEmail">
                     <Form.Control onChange={(e) => { setCurrentSearch(e.target.value) }} type="search" placeholder="Search..." value={currentSearch} />

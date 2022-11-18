@@ -29,7 +29,7 @@ const Detail = () => {
 
     return (<ProtectedRoute user={localStorage.getItem('user')}> 
           <MyNavbar user={localStorage.getItem("user")} />
-        <Container className="d-flex align-items-center min-h-85">
+        <Container className="d-flex align-items-center min-h-85 animate-in" style={{animationDelay:'100ms'}}>
           <CardDetail data={load[0]} isFavorite={load[1]}/>
         </Container>
         </ProtectedRoute>);

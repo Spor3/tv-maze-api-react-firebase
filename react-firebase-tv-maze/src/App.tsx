@@ -2,6 +2,10 @@
 import React, {useEffect, useState} from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+//Imports redux
+import { useAppSelector } from './app/hooks';
+import { selectTheme } from './features/theme/themeSlice';
+
 //Imports Service
 import { isUserConneted } from './_service/firebase/firebaseAuth.service'
 import { takeFavorite } from './_service/firebase/firebasesDb.service';
@@ -50,9 +54,11 @@ const router = createBrowserRouter([
 ])
 function App() {
 
+  const theme = useAppSelector(selectTheme);
+
 
   return (
-    <div className='darkTheme'>
+    <div className={theme === 'dark'? 'dark-theme':'ligth-theme'}>
       <BubblyContainer />
       <RouterProvider router={router} />
     </div>

@@ -1,6 +1,8 @@
 import { ShowDetailType } from "../../_service/api/index.service";
 import { addPrefer, deleteFavorite } from "../../_service/firebase/firebasesDb.service";
 import { TagsFill, HandThumbsUp, Bag, BagX } from 'react-bootstrap-icons';
+import { useAppSelector } from '../../app/hooks';
+import { selectTheme } from '../../features/theme/themeSlice';
 import { useEffect, useState } from "react";
 
 type PropsCard = {
@@ -10,6 +12,7 @@ type PropsCard = {
 
 const CardDetail = ({ data, isFavorite }: PropsCard) => {
 
+    const theme = useAppSelector(selectTheme);
     const [favoriteChanged, setFavoriteChange] = useState<boolean>(isFavorite); 
 
     const handleAddFavorite = () => {
@@ -27,11 +30,11 @@ const CardDetail = ({ data, isFavorite }: PropsCard) => {
     }
 
     return (
-        <article className="postcard dark yellow">
+        <article className={`${theme == 'dark'?'dark':'ligth'} postcard yellow animate-in`} style={{animationDelay:'200ms'}}>
             <div className="postcard__img_link">
                 <img className="postcard__img" src={data.image?.original} alt={data.title} />
             </div>
-            <div className="postcard__text">
+            <div className={`${theme == 'ligth'?'t-dark':''} postcard__text`}>
                 <h1 className="postcard__title yellow">{data.title}</h1>
                 <div className="postcard__bar"></div>
                 <div className="postcard__preview-txt">{!!data.summary ? data.summary.replace(/<\/?[\w\s]*>|<.+[\W]>/g, '') : 'Description Not Found'}</div>
