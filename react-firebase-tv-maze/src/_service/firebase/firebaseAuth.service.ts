@@ -1,6 +1,6 @@
 import { app } from "./firebase.config";
 import { takeFavorite } from "./firebasesDb.service";
-import { getAuth, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 const auth = getAuth(app);
 
@@ -40,12 +40,27 @@ export const isUserConneted = () => {
   });
 }
 
+export const logOut = async () => {
+
+  try {
+    await signOut(auth)
+    
+  } catch (error: any) {
+    const errorMessage = error.message;
+    throw errorMessage;
+
+  }
+}
 
 export const loginUser = async (email: string, password: string) => {
 
 
   try {
-    await signInWithEmailAndPassword(auth, email, password)
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+    const {uid, displayName } = user;
+
+    localStorage.setItem('user', JSON.stringify({uid, displayName}))
     
   } catch (error: any) {
     const errorMessage = error.message;

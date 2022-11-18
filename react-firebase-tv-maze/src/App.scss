@@ -5,6 +5,75 @@
 $main-yellow: #bdbb49 !default;
 $main-yellow-rgb-015: rgba(189, 187, 73, 0.1) !default;
 
+.cursor {
+  cursor: pointer;
+}
+
+.darkTheme,.lightTheme {
+  min-height: 100vh;
+}
+nav {
+  min-height: 15vh;
+.navbar-brand, .navbar-brand:hover {
+  font-size: 1.8em;
+  color: $main-yellow;
+}
+.navbar-toggler{
+  background-color: $main-yellow;
+}
+.navbar-toggler-icon {
+  color: #110f16;
+}
+.nav-link-font {
+  font-size: 1.3em;
+  position: relative;
+  gap: 5px;
+}
+.nav-link-font::before {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  border-radius: 2px;
+  height: 3px;
+  width: 0%;
+  background-color: $main-yellow;
+  transition: width 1s ease;
+}
+.nav-link-font:hover {
+color: $main-yellow;
+}
+.nav-link-font:hover::before {
+  width: 100%;
+}
+svg {
+  color: $main-yellow;
+}
+.active {
+  .nav-link-font {
+    color: $main-yellow;
+  }
+  .nav-link-font::before {
+    width: 100%;
+  }
+}
+}
+.card:hover {
+  z-index: 10;
+  .card-img-top {
+    z-index: 1;
+    filter: grayscale(0.5);
+  }
+}
+
+.min-h-85 {
+  min-height: 85vh;
+}
+
+
+
+.darkTheme{
+  background: #110f16;
 /* Cards */
 .postcard {
     flex-wrap: wrap;
@@ -248,9 +317,34 @@ $main-yellow-rgb-015: rgba(189, 187, 73, 0.1) !default;
       }
   }
 
-  .h-100 {
-    height: 100vh!important;
+  .card {
+    background-color:#18151f;
+    background-image: linear-gradient(
+      -30deg,
+      $main-yellow-rgb-015,
+      transparent 50%
+  );;
+    box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+    .card-title {
+      color: $main-yellow;
+    }
+    .card-text {
+      color: #ffffff;
+    }
   }
+
+  nav {
+    background-color: #110f16;
+    .nav-link{
+    color: #ffffff;
+    }
+  }
+
+}
+
+
+
+
 
   @keyframes in-keyframes {
     0% {

@@ -1,5 +1,5 @@
 //Imports node-module
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 //Imports Service
@@ -31,16 +31,16 @@ const router = createBrowserRouter([
   },
   {
     path: '/',
-    element: <ProtectedRoute user={localStorage.getItem('user')}><Search /></ProtectedRoute>
+    element: <Search /> 
   },
   {
     path: '/search/:id',
-    element: <ProtectedRoute user={localStorage.getItem('user')}><Detail /></ProtectedRoute>,
+    element: <Detail />,
     loader: dataLoader
   },
   {
     path: '/favorites',
-    element: <ProtectedRoute user={localStorage.getItem('user')}><Favorite /></ProtectedRoute>,
+    element:  <Favorite />,
     loader: favoriteLoader
   },
   {
@@ -48,14 +48,14 @@ const router = createBrowserRouter([
     element: <>404, Not Found</>
   }
 ])
-
 function App() {
 
+
   return (
-    <>
+    <div className='darkTheme'>
       <BubblyContainer />
       <RouterProvider router={router} />
-    </>
+    </div>
   );
 }
 

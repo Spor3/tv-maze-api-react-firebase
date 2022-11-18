@@ -19,6 +19,7 @@ export const takeFavorite = (uid:string) => {
     onValue(userRef, (snapshot) => {
       const favorites:any = [];
   const data = snapshot.val();
+  console.log(data)
   for (const iterator in data) {
     favorites.push(data[iterator])
   }

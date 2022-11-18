@@ -28,7 +28,7 @@ const Register = () => {
             const password = event.target[2].value as string;
 
             registerUser(email, password, name)
-                .then(() => navigate('/'))
+                .then(() => {navigate('/')})
                 .catch(err => setRegisterError(err));
         }
 

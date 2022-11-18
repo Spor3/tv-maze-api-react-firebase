@@ -15,7 +15,7 @@ const Login = () => {
     const [loginError, setLoginError] = useState('');
     const navigate = useNavigate()
 
-    const handleSubmit = (event: any) => {
+    const handleSubmit = async (event: any) => {
 
         event.preventDefault();
         event.stopPropagation();
@@ -23,9 +23,12 @@ const Login = () => {
         const email = event.target[0].value as string;
         const password = event.target[1].value as string;
 
-        loginUser(email, password)
-            .then(() => navigate('/'))
-            .catch(err => setLoginError(err));
+        try {
+            await loginUser(email, password)
+            navigate('/')
+        } catch (error:any) {
+            setLoginError(error)
+        }
 
     };
 

@@ -1,8 +1,10 @@
 
-import { getShowsBySearch, ShowType } from "../../_service/api/index.service";
+import { getShowsBySearch, ShowDetailType } from "../../_service/api/index.service";
+import ProtectedRoute from "../../components/protectedPage/protectedPage.component";
 import { Link, useSearchParams } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 import { Form, Row, Button, Card, Container, Col } from "react-bootstrap";
+import SearchCard from "../../components/detailCard/searchCard.component";
 import MyNavbar from '../../components/navbar/navbar.component'
 
 export default function Search() {
@@ -10,7 +12,7 @@ export default function Search() {
     const [searchParam, setSearchParam] = useSearchParams({ search: '' });
     const [currentSearch, setCurrentSearch] = useState<string>('');
     const [isloading, setIsLoading] = useState<boolean>(false);
-    const [shows, setShows] = useState<ShowType[]>([]);
+    const [shows, setShows] = useState<ShowDetailType[]>([]);
 
     const handleOnSubmit = (event: any) => {
 
@@ -36,8 +38,9 @@ export default function Search() {
         })
     }, []) 
 
-    return (<>
-    <MyNavbar user={localStorage.getItem('user')} />
+    return (
+        <ProtectedRoute user={localStorage.getItem('user')}> 
+    <MyNavbar user={localStorage.getItem('user')} activeLink="search" />
         <Container>
             <Form onSubmit={handleOnSubmit}>
                 <Form.Group className="mb-3 d-flex" controlId="formBasicEmail">
@@ -49,25 +52,10 @@ export default function Search() {
             </Form>
             <Container>
             <Row>
-                {shows.map((e, i) => {
-                    return (
-                        <Col key={e.id} className="d-flex justify-content-center mb-4">
-                            <Link to={'/search/' + e.id}>
-                            <Card style={{ width: '18rem', animationDelay:  (100 * i) + 'ms'}} className="animate-left-in">
-                                <Card.Img variant="top" src={e.image} />
-                                <Card.Body>
-                                    <Card.Title>{e.title}</Card.Title>
-                                    <Card.Text>{e.type}</Card.Text>
-                                </Card.Body>
-                            </Card>
-                            </Link>
-                        </Col>
-                    )
-                })}
+                {shows.map((e, i) => <SearchCard key={e.id} e={e} i={i} />)}
             </Row>
             </Container>
         </Container>
-        </>
-
+        </ProtectedRoute>
     )
 }
