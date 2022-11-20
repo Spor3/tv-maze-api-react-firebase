@@ -1,5 +1,5 @@
 //Imports node-module
-import React, {useEffect, useState} from 'react';
+import React, { useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 //Imports redux
@@ -8,20 +8,17 @@ import { selectTheme } from './features/theme/themeSlice';
 
 //Imports Service
 import { isUserConneted } from './_service/firebase/firebaseAuth.service'
-import { takeFavorite } from './_service/firebase/firebasesDb.service';
 
 //Imports Components
-import ProtectedRoute from './components/protectedPage/protectedPage.component';
 import Register from './pages/register/register.page'
 import Detail, { loader as dataLoader } from './pages/detail/detail.page'
 import Search from './pages/search/search.page'
-import Favorite, { loader as favoriteLoader} from './pages/favorite/favorite.component';
+import Favorite, { loader as favoriteLoader} from './pages/favorite/favorite.page';
 import { BubblyContainer } from 'react-bubbly-transitions';
 import Login from './pages/login/login.page';
 
 //Imports scss
 import './App.scss';
-import MyNavbar from './components/navbar/navbar.component';
 
 isUserConneted();
 const router = createBrowserRouter([
@@ -55,10 +52,17 @@ const router = createBrowserRouter([
 function App() {
 
   const theme = useAppSelector(selectTheme);
+  
+  useEffect(() => {
+    if(theme === 'dark')
+      document.body.style.backgroundColor = '#110f16';
+    else
+      document.body.style.backgroundColor = '#f3f5f7';
+  }, [theme])
 
 
   return (
-    <div className={theme === 'dark'? 'dark-theme':'ligth-theme'}>
+    <div className={theme === 'dark'? 'dark-theme min-h-100':'ligth-theme'}>
       <BubblyContainer />
       <RouterProvider router={router} />
     </div>

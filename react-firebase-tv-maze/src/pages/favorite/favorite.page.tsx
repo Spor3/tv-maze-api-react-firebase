@@ -2,8 +2,6 @@ import { useLoaderData } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import MyNavbar from "../../components/navbar/navbar.component";
 import CardDetail from "../../components/detailCard/detailCard.component";
-import { takeFavorite } from "../../_service/firebase/firebasesDb.service";
-import { ShowDetailType } from "../../_service/api/index.service";
 import ProtectedRoute from "../../components/protectedPage/protectedPage.component";
 
 export async function loader() {
@@ -17,10 +15,13 @@ const Favorite = () => {
   return (
     <ProtectedRoute user={localStorage.getItem('user')}>
       <MyNavbar user={localStorage.getItem("user")} activeLink="favorite"/>
-      <Container className="d-flex flex-column align-items-center">
-        {!!favoriteData? favoriteData.map((e:any) =>{
-          return <CardDetail key={e.id} data={e} isFavorite={true} />
+      <Container className="d-flex flex-column align-items-center min-h-85">
+      <h2 className="text-center page-title mt-3 animate-in" style={{animationDelay:'600ms'}}>{'Favorite'}</h2>
+      <Container className="m-5">
+        {!!favoriteData? favoriteData.map((e:any, i:number) =>{
+          return <CardDetail key={e.id} data={e} isFavorite={true} animationDelay={i+3} />
         }):'NO Favorite'}
+        </Container>
       </Container>
     </ ProtectedRoute>
   );

@@ -3,14 +3,15 @@ import { addPrefer, deleteFavorite } from "../../_service/firebase/firebasesDb.s
 import { TagsFill, HandThumbsUp, Bag, BagX } from 'react-bootstrap-icons';
 import { useAppSelector } from '../../app/hooks';
 import { selectTheme } from '../../features/theme/themeSlice';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type PropsCard = {
     data: ShowDetailType,
-    isFavorite:boolean
+    isFavorite:boolean,
+    animationDelay: number
 }
 
-const CardDetail = ({ data, isFavorite }: PropsCard) => {
+const CardDetail = ({ data, isFavorite, animationDelay }: PropsCard) => {
 
     const theme = useAppSelector(selectTheme);
     const [favoriteChanged, setFavoriteChange] = useState<boolean>(isFavorite); 
@@ -30,7 +31,7 @@ const CardDetail = ({ data, isFavorite }: PropsCard) => {
     }
 
     return (
-        <article className={`${theme == 'dark'?'dark':'ligth'} postcard yellow animate-in`} style={{animationDelay:'200ms'}}>
+        <article className={`${theme == 'dark'?'dark':'ligth'} postcard yellow animate-in`} style={{animationDelay: animationDelay * 200 + 'ms'}}>
             <div className="postcard__img_link">
                 <img className="postcard__img" src={data.image?.original} alt={data.title} />
             </div>

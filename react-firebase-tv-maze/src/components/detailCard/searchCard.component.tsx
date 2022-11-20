@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { ShowDetailType } from "../../_service/api/index.service";
 import { Star, StarFill } from 'react-bootstrap-icons';
 import { addPrefer, deleteFavorite } from "../../_service/firebase/firebasesDb.service";
+import { useAppSelector } from '../../app/hooks';
+import { selectTheme } from '../../features/theme/themeSlice';
 
 type PropsCard =  {
     e:ShowDetailType,
@@ -13,6 +15,7 @@ type PropsCard =  {
 const SearchCard = ({e,i}:PropsCard) => {
 
     const [isFavorite, setIsFavorite] = useState<boolean>(false);
+    const theme = useAppSelector(selectTheme);
 
     useEffect(() => {
         const storage = JSON.parse(localStorage.getItem('favorites') || '');
@@ -45,10 +48,13 @@ const SearchCard = ({e,i}:PropsCard) => {
           <Link to={"/search/" + e.id}>
           <Card.Img variant="top" src={e.image?.medium} />
           </Link>
+          <Link to={"/search/" + e.id}>
           <Card.Body>
-            <Card.Title>{e.title} {isFavorite? <StarFill className="cursor" onClick={handleRemoveFavorite} />: <Star className="cursor" onClick={handleAddFavorite} />} </Card.Title>
+            <Card.Title>{e.title}</Card.Title>
             <Card.Text>{e.type}</Card.Text>
           </Card.Body>
+          </Link>
+          {isFavorite? <StarFill className="cursor" onClick={handleRemoveFavorite} />: <Star className="cursor" onClick={handleAddFavorite} />}
         </Card>
     </Col>
   );
