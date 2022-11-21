@@ -34,7 +34,7 @@ const Detail = () => {
         <Container className="d-flex flex-column align-items-center min-h-85">
           <div className="d-flex align-items-center mt-5 justify-content-between w-100"><ArrowLeft className="page-title cursor animate-in" onClick={() => navigate(-1)}/><h2 className="mb-0 page-title me-2 animate-in">{showData.title.toUpperCase()}</h2></div>
           <div className="my-auto">
-          <CardDetail data={showData} isFavorite={isFavorite} animationDelay={1}/>
+          <CardDetail data={showData} isFavorite={isFavorite} animationDelay={1} favoritePage={false}/>
           </div>
         </Container>
         </ProtectedRoute>);

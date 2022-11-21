@@ -7,7 +7,12 @@ const database = getDatabase(app);
 export const addPrefer = (uid:string, show:ShowDetailType) => {
 
     const { id } =  show;
+    
+    if(typeof show.image.medium === 'undefined')
+      show.image.medium = ''
 
+    if(typeof show.image.original === 'undefined')
+      show.image.original = ''
 
    update(ref(database, '/users/' + uid + '/'+ id ), show)
 

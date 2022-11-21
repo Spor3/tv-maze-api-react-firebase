@@ -46,12 +46,12 @@ const SearchCard = ({e,i}:PropsCard) => {
           className="animate-in"
         >
           <Link to={"/search/" + e.id}>
-          <Card.Img variant="top" src={e.image?.medium} />
+          <Card.Img variant="top" src={e.image?.medium} alt='Image Not Found' />
           </Link>
           <Link to={"/search/" + e.id}>
           <Card.Body>
-            <Card.Title>{e.title}</Card.Title>
-            <Card.Text>{e.type}</Card.Text>
+            <Card.Title>{e.title?e.title:'TTitle Not Found'}</Card.Title>
+            <Card.Text>{e.type?e.type:'Type Not Found'}</Card.Text>
           </Card.Body>
           </Link>
           {isFavorite? <StarFill className="cursor" onClick={handleRemoveFavorite} />: <Star className="cursor" onClick={handleAddFavorite} />}

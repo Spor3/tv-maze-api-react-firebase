@@ -19,7 +19,7 @@ const Favorite = () => {
       <h2 className="text-center page-title mt-3 animate-in" style={{animationDelay:'600ms'}}>{'Favorite'}</h2>
       <Container className="m-5">
         {!!favoriteData? favoriteData.map((e:any, i:number) =>{
-          return <CardDetail key={e.id} data={e} isFavorite={true} animationDelay={i+3} />
+          return <CardDetail key={e.id} data={e} isFavorite={true} animationDelay={i+3} favoritePage={true} />
         }):'NO Favorite'}
         </Container>
       </Container>

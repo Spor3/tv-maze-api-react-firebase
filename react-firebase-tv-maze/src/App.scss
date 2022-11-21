@@ -100,6 +100,11 @@ nav {
   .card-title , svg {
     color: $main-yellow;
   }
+  .card-img-top {
+    min-width: 288px;
+    min-height: 404.56px;
+    color: $main-yellow;
+  }
 
   svg {
     position: absolute;
@@ -336,6 +341,7 @@ radial-gradient(at 0% 0%, hsla(152,18%,7%,1) 0px, transparent 50%);
     width: 100%;
     object-fit: cover;
     position: relative;
+    color: $main-yellow;
   }
 
   .postcard__img_link {
@@ -548,15 +554,13 @@ radial-gradient(at 0% 0%, hsla(152,18%,7%,1) 0px, transparent 50%);
   }
 }
 
-@keyframes in-left-keyframes {
+@keyframes out-keyframes {
   0% {
-    opacity: 0;
-    translate: -50% 0;
+    visibility: visible;
   }
 
   100% {
-    opacity: 1;
-    translate: 0 0;
+    visibility: hidden;
   }
 }
 
@@ -566,8 +570,8 @@ radial-gradient(at 0% 0%, hsla(152,18%,7%,1) 0px, transparent 50%);
   animation-fill-mode: both;
 }
 
-.animate-left-in {
-  animation-name: in-left-keyframes;
+.animate-out{
+  animation-name: out-keyframes;
   animation-duration: 0.5s;
   animation-fill-mode: both;
 }
@@ -682,6 +686,9 @@ body.closed .modal {
   .page-title {
     font-size: 3.5em;
   } 
+  .detail-card-button-size {
+    font-size: 1.2em;
+  }
 }
 
 @keyframes background-in {

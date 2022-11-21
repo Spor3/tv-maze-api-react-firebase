@@ -43,9 +43,9 @@ export type ShowDetailType = {
     startDate: string,
     endDate?: string,
     avgRating?: number,
-    image?: {
+    image: {
         original?:string,
-        medium?:string
+        medium?:string 
     },
     summary?: string,
     type:string
