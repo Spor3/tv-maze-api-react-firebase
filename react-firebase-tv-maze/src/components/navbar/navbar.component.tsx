@@ -25,7 +25,7 @@ const MyNavbar = ({user, activeLink}:any) => {
         document.body.style.overflowY = "hidden";
       } else {
         document.body.className = "close";
-        document.body.style.overflowY = "auto"
+        document.body.style.overflowY = "auto";
       }
     }, [modal])
 
@@ -42,7 +42,7 @@ const MyNavbar = ({user, activeLink}:any) => {
     return(
         <Navbar expand="lg" sticky="top">
         <Container fluid>
-        <Navbar.Brand className="animate-in d-flex align-items-center" style={{animationDelay: "600ms"}}><PersonCircle /> {displayName}</Navbar.Brand>
+        <Navbar.Brand className="animate-in d-flex align-items-center" style={{animationDelay: "600ms"}}><PersonCircle className="me-1" /> {displayName}</Navbar.Brand>
         <Navbar.Toggle  aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="animate-in" style={{animationDelay: "800ms"}} id="basic-navbar-nav">
           <Nav>
