@@ -27,7 +27,6 @@ export default function Search() {
         getShowsBySearch(currentSearch).then(res => {
             setShows(res)
             setIsLoading(false)
-            console.log(shows)
         })
     }
 

@@ -1,7 +1,6 @@
 /* Import bbootstrap style */
 @import "~bootstrap/scss/bootstrap";
 
-
 $main-yellow: #bdbb49 !default;
 $main-yellow-rgb-015: rgba(189, 187, 73, 0.1) !default;
 $main-green: #79dd09 !default;
@@ -21,9 +20,35 @@ $main-bg-ligth: #f3f5f7 !default;
 a {
   text-decoration: none;
 }
+
+.dropdown-toggle:active {
+  --bs-btn-active-bg: $main-white;
+  filter: grayscale(0.1);
+}
+
+.dropdown-toggle:focus {
+  border-color: transparent;
+}
+
+.dropdown-item:active {
+  background-color: transparent;
+  filter: grayscale(0.1);
+}
+
 .darkTheme,
 .lightTheme {
   min-height: 100vh;
+}
+
+.nav-font {
+  font-size: 1.1em;
+  text-transform:capitalize;
+}
+
+.before-secondary-color {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
 }
 
 nav {
@@ -36,11 +61,6 @@ nav {
   .navbar-brand,
   .navbar-brand:hover {
     font-size: 1.8em;
-    color: $main-yellow;
-  }
-
-  .navbar-toggler {
-    background-color: $main-yellow;
   }
 
   .navbar-toggler-icon {
@@ -53,24 +73,11 @@ nav {
     gap: 5px;
   }
 
-
-  .nav-link-font:hover {
-    color: $main-yellow;
-  }
-
   .nav-link-font:hover::before {
     width: 100%;
   }
 
-  svg {
-    color: $main-yellow;
-  }
-
   .active {
-    .nav-link-font {
-      color: $main-yellow;
-    }
-
     .nav-link-font::before {
       width: 100%;
     }
@@ -85,25 +92,17 @@ nav {
   border-radius: 2px;
   height: 3px;
   width: 0%;
-  background-color: $main-yellow;
   transition: width 1s ease;
 }
 
 .card {
   position: relative;
-  background-image: linear-gradient(-30deg,
-      $main-yellow-rgb-015,
-      transparent 50%);
   box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
   border: 0;
 
-  .card-title , svg {
-    color: $main-yellow;
-  }
   .card-img-top {
     min-width: 288px;
     min-height: 404.56px;
-    color: $main-yellow;
   }
 
   svg {
@@ -120,6 +119,10 @@ nav {
   .card-img-top {
     filter: contrast(150%);
   }
+}
+
+.dropdown-toggle {
+  border-color: transparent;
 }
 
 .min-h-85 {
@@ -202,35 +205,53 @@ radial-gradient(at 0% 0%, hsla(152,18%,7%,1) 0px, transparent 50%);
 }
 
 .search-button {
-  background-color: $main-yellow;
   color: $main-black;
   border-color: transparent;
 }
 
 .search-button:hover {
-  background-color: $main-yellow;
   color: $main-black;
   border-color: transparent;
 }
 
 .search-button:disabled {
-   background-color: $main-yellow;
   color: $main-black;
   border-color: transparent; 
   filter: opacity(1);
+}
+
+.btn {
+  --bs-btn-active-border-color:transparent
 }
 
 .search-group {
   width: 100%;
 }
 
-.page-title {
-  color: $main-yellow;
-}
 
 
 .dark-theme {
   background: $main-bg-dark;
+
+  .dropdown-toggle {
+    background-color: $main-bg-ligth;
+    color: $main-black;
+  }
+  .dropdown-item:active {
+    div{
+      color:$main-black
+    }
+  }
+
+  .dropdown-toggle:active {
+    div {
+    color: $main-white;
+    }
+  }
+
+  .dropdown-menu {
+    background-color: $main-bg-ligth;
+  }
 
   .label {
     background-color: $main-white;
@@ -263,6 +284,34 @@ radial-gradient(at 0% 0%, hsla(152,18%,7%,1) 0px, transparent 50%);
 
 .ligth-theme {
   background: $main-bg-ligth;
+
+  .dropdown-toggle {
+    background-color: $main-bg-dark;
+    color: $main-white;
+  }
+  .dropdown-item:active {
+    div{
+      color:$main-white
+    }
+  }
+
+  .dropdown-toggle:active {
+    div {
+    color: $main-black;
+    }
+  }
+
+  .dropdown-item {
+    color: $main-white;
+  }
+  .dropdown-item:hover {
+    color: $main-black;
+  }
+
+  .dropdown-menu {
+    background-color: $main-bg-dark;
+    color: $main-white;
+  }
 
   .label {
     background-color: $main-black;
@@ -297,40 +346,38 @@ radial-gradient(at 0% 0%, hsla(152,18%,7%,1) 0px, transparent 50%);
 .postcard {
   flex-wrap: wrap;
   display: flex;
-
+  
   box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
   border-radius: 10px;
   margin: 0 0 2rem 0;
   overflow: hidden;
   position: relative;
-  color: $main-white;
+  color: #ffffff;
 
-  &.dark {
-    background-color: #18151f;
-  }
-
-  &.light {
-    background-color: #e1e5ea;
-  }
-
-  .t-dark {
-    color: #18151f;
-  }
-
+	&.dark {
+		background-color: #18151f;
+	}
+	&.light {
+		background-color: #e1e5ea;
+	}
+	
+	.t-dark {
+		color: #18151f;
+	}
+	
   a {
     color: inherit;
   }
-
-  h1,
-  .h1 {
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    line-height: 1.2;
-  }
-
-  .small {
-    font-size: 80%;
-  }
+	
+	h1,	.h1 {
+		margin-bottom: 0.5rem;
+		font-weight: 500;
+		line-height: 1.2;
+	}
+	
+	.small {
+		font-size: 80%;
+	}
 
   .postcard__title {
     font-size: 1.75rem;
@@ -341,7 +388,6 @@ radial-gradient(at 0% 0%, hsla(152,18%,7%,1) 0px, transparent 50%);
     width: 100%;
     object-fit: cover;
     position: relative;
-    color: $main-yellow;
   }
 
   .postcard__img_link {
@@ -376,7 +422,7 @@ radial-gradient(at 0% 0%, hsla(152,18%,7%,1) 0px, transparent 50%);
     flex-flow: row wrap;
     font-size: 14px;
     margin: 20px 0 0 0;
-    padding: 0;
+		padding: 0;
     justify-content: center;
 
     .tag__item {
@@ -468,74 +514,160 @@ radial-gradient(at 0% 0%, hsla(152,18%,7%,1) 0px, transparent 50%);
     }
   }
 }
-
-@media screen and (min-width: 1024px) {
-  .postcard__text {
-    padding: 2rem 3.5rem;
-  }
-
-  .postcard__text:before {
-    content: "";
-    position: absolute;
-    display: block;
-
-    top: -20%;
-    height: 130%;
-    width: 55px;
-  }
-
+@media screen and (min-width: 1024px){
+		.postcard__text {
+      padding: 2rem 3.5rem;
+    }
+		
+		.postcard__text:before {
+      content: "";
+      position: absolute;
+      display: block;
+      
+      top: -20%;
+      height: 130%;
+      width: 55px;
+    }
+	
   .postcard.dark {
-    .postcard__text:before {
-      background: #18151f;
-    }
+		.postcard__text:before {
+			background: #18151f;
+		}
   }
-
-  .postcard.light {
-    .postcard__text:before {
-      background: #e1e5ea;
-    }
+	.postcard.light {
+		.postcard__text:before {
+			background: #e1e5ea;
+		}
   }
 }
 
 /* COLORS */
+.postcard .postcard__tagbox .green.play:hover {
+	background: $main-green;
+	color: black;
+}
+.green .postcard__title:hover {
+	color: $main-green;
+}
+.green .postcard__bar {
+	background-color: $main-green;
+}
+.green::before {
+	background-image: linear-gradient(
+		-30deg,
+		$main-green-rgb-015,
+		transparent 50%
+	);
+}
+.green:nth-child(2n)::before {
+	background-image: linear-gradient(30deg, $main-green-rgb-015, transparent 50%);
+}
+
+.postcard .postcard__tagbox .blue.play:hover {
+	background: $main-blue;
+}
+.blue .postcard__title:hover {
+	color: $main-blue;
+}
+.blue .postcard__bar {
+	background-color: $main-blue;
+}
+.blue::before {
+	background-image: linear-gradient(-30deg, $main-blue-rgb-015, transparent 50%);
+}
+.blue:nth-child(2n)::before {
+	background-image: linear-gradient(30deg, $main-blue-rgb-015, transparent 50%);
+}
+
+.postcard .postcard__tagbox .red.play:hover {
+	background: $main-red;
+}
+.red .postcard__title:hover {
+	color: $main-red;
+}
+.red .postcard__bar {
+	background-color: $main-red;
+}
+.red::before {
+	background-image: linear-gradient(-30deg, $main-red-rgb-015, transparent 50%);
+}
+.red:nth-child(2n)::before {
+	background-image: linear-gradient(30deg, $main-red-rgb-015, transparent 50%);
+}
+
 .postcard .postcard__tagbox .yellow.play:hover {
-  background: $main-yellow;
-  color: black;
+	background: $main-yellow;
+	color: black;
 }
-
 .yellow .postcard__title:hover {
-  color: $main-yellow;
+	color: $main-yellow;
 }
-
 .yellow .postcard__bar {
-  background-color: $main-yellow;
+	background-color: $main-yellow;
 }
-
 .yellow::before {
-  background-image: linear-gradient(-30deg,
-      $main-yellow-rgb-015,
-      transparent 50%);
+	background-image: linear-gradient(
+		-30deg,
+		$main-yellow-rgb-015,
+		transparent 50%
+	);
 }
-
 .yellow:nth-child(2n)::before {
-  background-image: linear-gradient(30deg,
-      $main-yellow-rgb-015,
-      transparent 50%);
+	background-image: linear-gradient(
+		30deg,
+		$main-yellow-rgb-015,
+		transparent 50%
+	);
 }
 
 @media screen and (min-width: 769px) {
+	.green::before {
+		background-image: linear-gradient(
+			-80deg,
+			$main-green-rgb-015,
+			transparent 50%
+		);
+	}
+	.green:nth-child(2n)::before {
+		background-image: linear-gradient(
+			80deg,
+			$main-green-rgb-015,
+			transparent 50%
+		);
+	}
 
-  .yellow::before {
-    background-image: linear-gradient(-80deg,
-        $main-yellow-rgb-015,
-        transparent 50%);
-  }
+	.blue::before {
+		background-image: linear-gradient(
+			-80deg,
+			$main-blue-rgb-015,
+			transparent 50%
+		);
+	}
+	.blue:nth-child(2n)::before {
+		background-image: linear-gradient(80deg, $main-blue-rgb-015, transparent 50%);
+	}
 
-  .yellow:nth-child(2n)::before {
-    background-image: linear-gradient(80deg,
-        $main-yellow-rgb-015,
-        transparent 50%);
-  }
+	.red::before {
+		background-image: linear-gradient(-80deg, $main-red-rgb-015, transparent 50%);
+	}
+	.red:nth-child(2n)::before {
+		background-image: linear-gradient(80deg, $main-red-rgb-015, transparent 50%);
+	}
+	
+	.yellow::before {
+		background-image: linear-gradient(
+			-80deg,
+			$main-yellow-rgb-015,
+			transparent 50%
+		);
+	}
+	.yellow:nth-child(2n)::before {
+		background-image: linear-gradient(
+			80deg,
+			$main-yellow-rgb-015,
+			transparent 50%
+		);
+	}
 }
 
 
@@ -556,10 +688,12 @@ radial-gradient(at 0% 0%, hsla(152,18%,7%,1) 0px, transparent 50%);
 
 @keyframes out-keyframes {
   0% {
+    translate: 0 0;
     visibility: visible;
   }
 
   100% {
+    translate: 0 100%;
     visibility: hidden;
   }
 }
@@ -626,10 +760,6 @@ radial-gradient(at 0% 0%, hsla(152,18%,7%,1) 0px, transparent 50%);
     top: 10px;
     right: 10px;
 
-  }
-
-  h2 {
-    color: $main-yellow;
   }
 }
 
@@ -737,4 +867,264 @@ body.open .modal-background {
     opacity: 1;
     visibility: visible;
   }
+}
+
+.yellow {
+  .modal {
+    h2 {
+      color: $main-yellow;
+    }
+  }
+nav {
+  .navbar-brand,
+  .navbar-brand:hover {
+    color: $main-yellow;
+  }
+
+  .navbar-toggler {
+    background-color: $main-yellow;
+  }
+
+  .nav-link-font:hover {
+    color: $main-yellow;
+  }
+
+  svg {
+    color: $main-yellow;
+  }
+
+  .active {
+    .nav-link-font {
+      color: $main-yellow;
+    }
+  }
+}
+.nav-link-font::before {
+  content: '';
+  background-color: $main-yellow;
+}
+
+.card {
+  background-image: linear-gradient(-30deg,
+      $main-yellow-rgb-015,
+      transparent 50%);
+
+
+  .card-title , svg {
+    color: $main-yellow;
+  }
+  .card-img-top {
+    color: $main-yellow;
+  }
+}
+
+.search-button {
+  background-color: $main-yellow;
+}
+
+.search-button:hover {
+  background-color: $main-yellow;
+}
+
+.search-button:disabled {
+   background-color: $main-yellow;
+}
+.page-title {
+  color: $main-yellow;
+}
+}
+
+.red {
+  .modal {
+    h2 {
+      color: $main-red;
+    }
+  }
+nav {
+  .navbar-brand,
+  .navbar-brand:hover {
+    color: $main-red;
+  }
+
+  .navbar-toggler {
+    background-color: $main-red;
+  }
+
+  .nav-link-font:hover {
+    color: $main-red;
+  }
+
+  svg {
+    color: $main-red;
+  }
+
+  .active {
+    .nav-link-font {
+      color: $main-red;
+    }
+  }
+}
+.nav-link-font::before {
+  content: '';
+  background-color: $main-red;
+}
+
+.card {
+  background-image: linear-gradient(-30deg,
+      $main-red-rgb-015,
+      transparent 50%);
+
+
+  .card-title , svg {
+    color: $main-red;
+  }
+  .card-img-top {
+    color: $main-red;
+  }
+}
+
+.search-button {
+  background-color: $main-red;
+}
+
+.search-button:hover {
+  background-color: $main-red;
+}
+
+.search-button:disabled {
+   background-color: $main-red;
+}
+.page-title {
+  color: $main-red;
+}
+}
+
+.green {
+  .modal {
+    h2 {
+      color: $main-green;
+    }
+  }
+nav {
+  .navbar-brand,
+  .navbar-brand:hover {
+    color: $main-green;
+  }
+
+  .navbar-toggler {
+    background-color: $main-green;
+  }
+
+  .nav-link-font:hover {
+    color: $main-green;
+  }
+
+  svg {
+    color: $main-green;
+  }
+
+  .active {
+    .nav-link-font {
+      color: $main-green;
+    }
+  }
+}
+.nav-link-font::before {
+  content: '';
+  background-color: $main-green;
+}
+
+.card {
+  background-image: linear-gradient(-30deg,
+      $main-green-rgb-015,
+      transparent 50%);
+
+
+  .card-title , svg {
+    color: $main-green;
+  }
+  .card-img-top {
+    color: $main-green;
+  }
+}
+
+.search-button {
+  background-color: $main-green;
+}
+
+.search-button:hover {
+  background-color: $main-green;
+}
+
+.search-button:disabled {
+   background-color: $main-green;
+}
+.page-title {
+  color: $main-green;
+}
+}
+
+.blue {
+  .modal {
+    h2 {
+      color: $main-blue;
+    }
+  }
+nav {
+  .navbar-brand,
+  .navbar-brand:hover {
+    color: $main-blue;
+  }
+
+  .navbar-toggler {
+    background-color: $main-blue;
+  }
+
+  .nav-link-font:hover {
+    color: $main-blue;
+  }
+
+  svg {
+    color: $main-blue;
+  }
+
+  .active {
+    .nav-link-font {
+      color: $main-blue;
+    }
+  }
+}
+.nav-link-font::before {
+  content: '';
+  background-color: $main-blue;
+}
+
+.card {
+  background-image: linear-gradient(-30deg,
+      $main-blue-rgb-015,
+      transparent 50%);
+
+
+  .card-title , svg {
+    color: $main-blue;
+  }
+  .card-img-top {
+    color: $main-blue;
+  }
+}
+
+.search-button {
+  background-color: $main-blue;
+}
+
+.search-button:hover {
+  background-color: $main-blue;
+}
+
+.search-button:disabled {
+   background-color: $main-blue;
+}
+.page-title {
+  color: $main-blue;
+}
 }

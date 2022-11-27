@@ -6,7 +6,6 @@ const auth = getAuth(app);
 
 export const registerUser = async (email: string, password: string, name: string) => {
 
-
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password)
     // Signed in 
@@ -30,7 +29,6 @@ export const isUserConneted = () => {
     if (user) {
 
       const { uid, displayName } = user;
-      console.log(user)
       const currentUser = { uid, displayName }
       localStorage.setItem('user', JSON.stringify(currentUser))
       takeFavorite(uid);

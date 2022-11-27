@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 //Imports redux
 import { useAppSelector } from './app/hooks';
 import { selectTheme } from './features/theme/themeSlice';
+import { selectSecondaryColor } from "./features/secondaryColor/secondaryColor";
 
 //Imports Service
 import { isUserConneted } from './_service/firebase/firebaseAuth.service'
@@ -52,17 +53,18 @@ const router = createBrowserRouter([
 function App() {
 
   const theme = useAppSelector(selectTheme);
+  const ReduxSecondaryColor = useAppSelector(selectSecondaryColor)
   
   useEffect(() => {
-    if(theme === 'dark')
+     if(theme === 'dark')
       document.body.style.backgroundColor = '#110f16';
     else
-      document.body.style.backgroundColor = '#f3f5f7';
+      document.body.style.backgroundColor = '#f3f5f7'; 
   }, [theme])
 
 
   return (
-    <div className={theme === 'dark'? 'dark-theme min-h-100':'ligth-theme'}>
+    <div className={`${theme === 'dark'? 'dark-theme':'ligth-theme'} ${ReduxSecondaryColor}`}>
       <BubblyContainer />
       <RouterProvider router={router} />
     </div>

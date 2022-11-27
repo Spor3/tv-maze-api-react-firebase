@@ -10,6 +10,13 @@ const Theme = () => {
   const dispatch = useAppDispatch();
   const [ checked, setChecked ] = useState<boolean>(false); //false dark, true ligth
 
+  useEffect(() => {
+    if(theme === 'dark')
+      setChecked(false)
+    else
+      setChecked(true)
+  },[])
+
   const handleClick = () => {
     setChecked(!checked);
 
@@ -18,7 +25,7 @@ const Theme = () => {
 
   return (
 
-  <div  className="label" onClick={handleClick}>
+  <div  className="label cursor" onClick={handleClick}>
    <MoonFill />
    <SunFill />
     <div className={`${checked?'':'checkbox-checked'} ball`}>
