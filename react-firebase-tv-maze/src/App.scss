@@ -105,8 +105,11 @@ nav {
   border: 0;
 
   .card-img-top {
-    min-width: 288px;
     min-height: 404.56px;
+    width: 100%;
+    object-fit: cover;
+    position: relative;
+    transition: transform 0.5s ease;
   }
 
   svg {
@@ -121,7 +124,7 @@ nav {
   z-index: 10;
 
   .card-img-top {
-    filter: contrast(150%);
+    transform: scale(1.1);
   }
 }
 
@@ -230,6 +233,12 @@ radial-gradient(at 0% 0%, hsla(152,18%,7%,1) 0px, transparent 50%);
 
 .search-group {
   width: 100%;
+}
+
+.label {
+  svg {
+    color: $main-yellow;
+  }
 }
 
 
@@ -880,6 +889,11 @@ body.open .modal-background {
     }
   }
 nav {
+  .nav-link {
+    svg {
+      color: $main-yellow;
+    }
+  }
   .navbar-brand,
   .navbar-brand:hover {
     color: $main-yellow;
@@ -890,10 +904,6 @@ nav {
   }
 
   .nav-link-font:hover {
-    color: $main-yellow;
-  }
-
-  svg {
     color: $main-yellow;
   }
 
@@ -945,6 +955,11 @@ nav {
     }
   }
 nav {
+  .nav-link {
+    svg {
+      color: $main-red;
+    }
+  }
   .navbar-brand,
   .navbar-brand:hover {
     color: $main-red;
@@ -955,10 +970,6 @@ nav {
   }
 
   .nav-link-font:hover {
-    color: $main-red;
-  }
-
-  svg {
     color: $main-red;
   }
 
@@ -1010,6 +1021,11 @@ nav {
     }
   }
 nav {
+  .nav-link {
+    svg {
+      color: $main-green;
+    }
+  }
   .navbar-brand,
   .navbar-brand:hover {
     color: $main-green;
@@ -1020,10 +1036,6 @@ nav {
   }
 
   .nav-link-font:hover {
-    color: $main-green;
-  }
-
-  svg {
     color: $main-green;
   }
 
@@ -1075,6 +1087,11 @@ nav {
     }
   }
 nav {
+  .nav-link {
+    svg {
+      color: $main-blue;
+    }
+  }
   .navbar-brand,
   .navbar-brand:hover {
     color: $main-blue;
@@ -1085,10 +1102,6 @@ nav {
   }
 
   .nav-link-font:hover {
-    color: $main-blue;
-  }
-
-  svg {
     color: $main-blue;
   }
 

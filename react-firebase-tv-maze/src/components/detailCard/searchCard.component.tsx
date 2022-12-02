@@ -45,7 +45,7 @@ const SearchCard = ({e,i}:PropsCard) => {
           style={{ width: "18rem", animationDelay: 25 * i + "ms" }}
           className="animate-in"
         >
-          <Link to={"/search/" + e.id}>
+          <Link to={"/search/" + e.id} className="overflow-hidden">
           <Card.Img variant="top" src={e.image?.medium} alt='Image Not Found' />
           </Link>
           <Link to={"/search/" + e.id}>
