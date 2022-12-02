@@ -25,13 +25,13 @@ const Favorite = () => {
 
   const handleSortAlphabetic = () => {
        setFilterData(favoriteData.sort((a:ShowDetailType, b:ShowDetailType) => a.title.localeCompare(b.title)).map((e:any, i:number) =>{
-        return <CardDetail key={e.id} data={e} isFavorite={true} animationDelay={i+3} favoritePage={true} />
+        return <CardDetail key={e.id} data={e} isFavorite={true} animationDelay={1} favoritePage={true} />
       }));
   }
 
   const handleSortAlphabeticReverse = () => {
     setFilterData(favoriteData.sort((a:ShowDetailType, b:ShowDetailType) => a.title.localeCompare(b.title)).reverse().map((e:any, i:number) =>{
-     return <CardDetail key={e.id} data={e} isFavorite={true} animationDelay={i+3} favoritePage={true} />
+     return <CardDetail key={e.id} data={e} isFavorite={true} animationDelay={1} favoritePage={true} />
    }));
   }
 
@@ -44,7 +44,7 @@ const Favorite = () => {
       else
         return 0
     }).map((e:any, i:number) =>{
-     return <CardDetail key={e.id} data={e} isFavorite={true} animationDelay={i+3} favoritePage={true} />
+     return <CardDetail key={e.id} data={e} isFavorite={true} animationDelay={1} favoritePage={true} />
    }));
   }
 
@@ -57,7 +57,7 @@ const Favorite = () => {
       else
         return 0
     }).map((e:any, i:number) =>{
-     return <CardDetail key={e.id} data={e} isFavorite={true} animationDelay={i+3} favoritePage={true} />
+     return <CardDetail key={e.id} data={e} isFavorite={true} animationDelay={1} favoritePage={true} />
    }));
   }
 
