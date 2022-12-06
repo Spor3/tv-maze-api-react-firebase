@@ -3,19 +3,20 @@ import { BubblyLink } from 'react-bubbly-transitions';
 import { Search, HeartFill, PersonCircle, PersonDashFill, XCircle } from 'react-bootstrap-icons';
 import { logOut } from "../../_service/firebase/firebaseAuth.service";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Theme from "../../features/theme/Theme";
 import { useAppSelector } from '../../app/hooks';
 import { selectTheme } from '../../features/theme/themeSlice';
 import DropDownMenu from '../dropDown/dropDownColor.component';
 import { selectSecondaryColor } from "../../features/secondaryColor/secondaryColor";
+import { UserContext } from "../../hooks/context/UserContext";
 
-const MyNavbar = ({user, activeLink}:any) => {
+const MyNavbar = ({activeLink}:any) => {
 
-    const { displayName } = JSON.parse(user);
+    const {user, isLoading, error}:any = useContext(UserContext);
     const theme = useAppSelector(selectTheme);
     const ReduxSecondaryColor = useAppSelector(selectSecondaryColor)
-    const [error, setError] = useState<string>('');
+    const [ errors, setError] = useState<string>('');
     const navigate = useNavigate();
     const [ modal, setModal ] = useState<boolean>(false);
 
@@ -42,7 +43,7 @@ const MyNavbar = ({user, activeLink}:any) => {
     return(
         <Navbar expand="lg" sticky="top">
         <Container fluid>
-        <Navbar.Brand className="animate-in d-flex align-items-center" style={{animationDelay: "600ms"}}><PersonCircle className="me-1" /> {displayName}</Navbar.Brand>
+        <Navbar.Brand className="animate-in d-flex align-items-center" style={{animationDelay: "600ms"}}><PersonCircle className="me-1" /> {user.displayName}</Navbar.Brand>
         <Navbar.Toggle  aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="animate-in" style={{animationDelay: "800ms"}} id="basic-navbar-nav">
           <Nav>

@@ -39,8 +39,8 @@ export default function Search() {
     }, []) 
 
     return (
-        <ProtectedRoute user={localStorage.getItem('user')}> 
-    <MyNavbar user={localStorage.getItem('user')} activeLink="search" />
+        <ProtectedRoute> 
+    <MyNavbar activeLink="search" />
         <Container className="min-h-85">
             <h2 className="text-center page-title mt-3 animate-in" style={{animationDelay:'600ms'}}>{ 'Search for Movies or Tv Series'}</h2>
             <Form onSubmit={handleOnSubmit} className="d-flex justify-content-center mt-4 animate-in" style={{animationDelay:'600ms'}}>

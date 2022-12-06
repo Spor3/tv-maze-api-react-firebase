@@ -4,7 +4,8 @@ import { TagsFill, HandThumbsUp, Bag, BagX } from 'react-bootstrap-icons';
 import { useAppSelector } from '../../app/hooks';
 import { selectTheme } from '../../features/theme/themeSlice';
 import { selectSecondaryColor } from "../../features/secondaryColor/secondaryColor";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../../hooks/context/UserContext";
 
 type PropsCard = {
     data: ShowDetailType,
@@ -16,6 +17,7 @@ type PropsCard = {
 const CardDetail = ({ data, isFavorite, animationDelay, favoritePage }: PropsCard) => {
 
     const theme = useAppSelector(selectTheme);
+    const {user}:any = useContext(UserContext);
     const ReduxSecondaryColor = useAppSelector(selectSecondaryColor);
     const [favoriteChanged, setFavoriteChange] = useState<boolean>(isFavorite);
     const [deleteCard, setDeleteCard ] = useState<boolean>(false);
@@ -23,14 +25,14 @@ const CardDetail = ({ data, isFavorite, animationDelay, favoritePage }: PropsCar
 
     const handleAddFavorite = () => {
         
-        const { uid } = JSON.parse(localStorage.getItem('user')!);
+        const { uid } = user;
         addPrefer(uid, data);
         setFavoriteChange(true)
     }
 
     const handleRemoveFavorite = () => {
 
-        const { uid } = JSON.parse(localStorage.getItem('user')!);
+        const { uid } = user;
         deleteFavorite(uid, data);
         if(favoritePage) {
             setDeleteCard(true)

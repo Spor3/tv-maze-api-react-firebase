@@ -1,14 +1,11 @@
 //Imports node-module
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 //Imports redux
 import { useAppSelector } from './app/hooks';
 import { selectTheme } from './features/theme/themeSlice';
 import { selectSecondaryColor } from "./features/secondaryColor/secondaryColor";
-
-//Imports Service
-import { isUserConneted } from './_service/firebase/firebaseAuth.service'
 
 //Imports Components
 import Register from './pages/register/register.page'
@@ -20,8 +17,8 @@ import Login from './pages/login/login.page';
 
 //Imports scss
 import './App.scss';
+import { UserContext } from './hooks/context/UserContext';
 
-isUserConneted();
 const router = createBrowserRouter([
   {
     path: '/login',
@@ -52,6 +49,7 @@ const router = createBrowserRouter([
 ])
 function App() {
 
+  const user = useContext(UserContext)
   const theme = useAppSelector(selectTheme);
   const ReduxSecondaryColor = useAppSelector(selectSecondaryColor)
   

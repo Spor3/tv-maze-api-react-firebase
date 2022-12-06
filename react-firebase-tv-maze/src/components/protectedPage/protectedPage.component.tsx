@@ -1,10 +1,18 @@
 //Import Navigate to change url
+import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
+import { UserContext } from '../../hooks/context/UserContext';
 
 
-const ProtectedRoute = ({user, children }:any) => {
+const ProtectedRoute = ({ children }:any) => {
 
-    if (!user) {
+  const user:any = useContext(UserContext);
+
+  if(user.isLoading && !user.user){
+    return <>Loading...</>
+  }
+
+    if (!user.user && !user.isLoading ) {
       return <Navigate to="/login" replace />;
     }
   

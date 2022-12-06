@@ -62,8 +62,8 @@ const Favorite = () => {
   }
 
   return (
-    <ProtectedRoute user={localStorage.getItem('user')}>
-      <MyNavbar user={localStorage.getItem("user")} activeLink="favorite"/>
+    <ProtectedRoute>
+      <MyNavbar activeLink="favorite"/>
       <Container className="d-flex flex-column align-items-center min-h-85">
         <div className="d-flex align-items-center justify-content-between w-100">
       <h2 className="text-center page-title mt-3 animate-in mx-auto" style={{animationDelay:'600ms'}}>{'Favorite'}</h2>

@@ -29,8 +29,8 @@ const Detail = () => {
     const navigate = useNavigate();
 
     return (
-    <ProtectedRoute user={localStorage.getItem('user')}> 
-          <MyNavbar user={localStorage.getItem("user")} />
+    <ProtectedRoute> 
+          <MyNavbar/>
         <Container className="d-flex flex-column align-items-center min-h-85">
           <div className="d-flex align-items-center mt-5 justify-content-between w-100"><ArrowLeft className="page-title cursor animate-in" onClick={() => navigate(-1)}/><h2 className="mb-0 page-title me-2 animate-in">{showData.title.toUpperCase()}</h2></div>
           <div className="my-auto">

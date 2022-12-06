@@ -1,11 +1,12 @@
 import { Card, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ShowDetailType } from "../../_service/api/index.service";
 import { Star, StarFill } from 'react-bootstrap-icons';
 import { addPrefer, deleteFavorite } from "../../_service/firebase/firebasesDb.service";
 import { useAppSelector } from '../../app/hooks';
 import { selectTheme } from '../../features/theme/themeSlice';
+import { UserContext } from "../../hooks/context/UserContext";
 
 type PropsCard =  {
     e:ShowDetailType,
@@ -15,6 +16,7 @@ type PropsCard =  {
 const SearchCard = ({e,i}:PropsCard) => {
 
     const [isFavorite, setIsFavorite] = useState<boolean>(false);
+    const {user}:any = useContext(UserContext);
     const theme = useAppSelector(selectTheme);
 
     useEffect(() => {
@@ -27,14 +29,14 @@ const SearchCard = ({e,i}:PropsCard) => {
 
      const handleAddFavorite = () => {
         
-        const { uid } = JSON.parse(localStorage.getItem('user')!);
+        const { uid } = user;
         addPrefer(uid, e);
         setIsFavorite(true)
     }
 
     const handleRemoveFavorite = () => {
         
-        const { uid } = JSON.parse(localStorage.getItem('user')!);
+        const { uid } = user;
         deleteFavorite(uid, e);
         setIsFavorite(false)
     } 
