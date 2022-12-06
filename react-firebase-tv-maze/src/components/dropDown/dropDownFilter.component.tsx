@@ -1,5 +1,5 @@
 import Dropdown from "react-bootstrap/Dropdown";
-import { ArrowDown, ArrowUp, StarFill, Star } from "react-bootstrap-icons";
+import { ArrowDown, ArrowUp, StarFill, Star, XCircle } from "react-bootstrap-icons";
 import { useState } from "react";
 
 type DropdownFilterProps = {
@@ -7,6 +7,7 @@ type DropdownFilterProps = {
   handleSortAlphabeticReverse: () => void;
   handleSortNumeric: () => void;
   handleSortNumericReverse: () => void;
+  handleNoFilter: () => void
 };
 
 type ActiveFilter = {
@@ -20,6 +21,7 @@ const DropDownFilter = ({
   handleSortAlphabeticReverse,
   handleSortNumeric,
   handleSortNumericReverse,
+  handleNoFilter
 }: DropdownFilterProps) => {
 
   const [ activeFilter, setActiveFilter ] = useState<ActiveFilter | null>();
@@ -30,6 +32,7 @@ const DropDownFilter = ({
     { type: "Z-A", function: handleSortAlphabeticReverse, icon: <ArrowUp /> },
     { type: "10-0", function: handleSortNumeric, icon: <StarFill /> },
     { type: "0-10", function: handleSortNumericReverse, icon: <Star /> },
+    { type: "No Filter", function: handleNoFilter, icon: <XCircle /> },
   ];
 
   return (

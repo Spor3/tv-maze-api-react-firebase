@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 
 export async function loader() {
   const favoriteData:ShowDetailType = JSON.parse(localStorage.getItem("favorites") || "");
+  
 
   return favoriteData;
 }
@@ -22,6 +23,12 @@ const Favorite = () => {
       return <CardDetail key={e.id} data={e} isFavorite={true} animationDelay={i+3} favoritePage={true} />
     }))
   }, [])
+
+  const handleNoFilter = () => {
+    setFilterData(favoriteData.map((e:any, i:number) =>{
+      return <CardDetail key={e.id} data={e} isFavorite={true} animationDelay={1} favoritePage={true} />
+    }))
+  }
 
   const handleSortAlphabetic = () => {
        setFilterData(favoriteData.sort((a:ShowDetailType, b:ShowDetailType) => a.title.localeCompare(b.title)).map((e:any, i:number) =>{
@@ -68,7 +75,7 @@ const Favorite = () => {
         <div className="d-flex align-items-center justify-content-between w-100">
       <h2 className="text-center page-title mt-3 animate-in mx-auto" style={{animationDelay:'600ms'}}>{'Favorite'}</h2>
 
-      <DropDownFilter handleSortAlphabetic={handleSortAlphabetic} handleSortAlphabeticReverse={handleSortAlphabeticReverse} handleSortNumeric={handleSortNumeric} handleSortNumericReverse={handleSortNumericReverse} />
+      <DropDownFilter handleSortAlphabetic={handleSortAlphabetic} handleSortAlphabeticReverse={handleSortAlphabeticReverse} handleSortNumeric={handleSortNumeric} handleSortNumericReverse={handleSortNumericReverse} handleNoFilter={handleNoFilter} />
     </div>
       <Container className="m-5">
         {!!favoriteData? filterData:'NO Favorite'}

@@ -11,8 +11,8 @@ export async function loader({ params }: any) {
     const data = await getShowById(params.id) as ShowDetailType;
     let isFavorite = false; 
     console.log(data)
-    const storage = JSON.parse(localStorage.getItem('favorites')!);
-      if(data !== null){
+    const storage = JSON.parse(localStorage.getItem('favorites') || 'null');
+      if(data !== null && storage !== null){
          storage.forEach((e:ShowDetailType) =>{        
             if(e.id === data.id){
                 isFavorite = true

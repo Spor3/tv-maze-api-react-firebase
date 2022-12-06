@@ -14,6 +14,7 @@ import Search from './pages/search/search.page'
 import Favorite, { loader as favoriteLoader} from './pages/favorite/favorite.page';
 import { BubblyContainer } from 'react-bubbly-transitions';
 import Login from './pages/login/login.page';
+import Watching from './pages/watching/watching.page';
 
 //Imports scss
 import './App.scss';
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
     path: '/favorites',
     element:  <Favorite />,
     loader: favoriteLoader
+  },
+  {
+    path: '/watching',
+    element: <Watching />
   },
   {
     path: '*',
