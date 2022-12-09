@@ -19,8 +19,6 @@ export const addPrefer = (uid:string, show:ShowDetailType) => {
 }
 
 export const addWatching = (uid:string, show:ShowDetailType) => {
-
-  const { id } =  show;
   
   if(typeof show.image.medium === 'undefined')
     show.image.medium = ''
@@ -36,30 +34,6 @@ export const deleteWatching = (uid:string) => {
   const userRef = ref(database, 'watching/' + uid );
 
   remove(userRef)
-}
-
-export const takeWatching = (uid:string) => {
-    
-  const userRef = ref(database, 'watching/' + uid );
-  onValue(userRef, (snapshot) => {
-const data = snapshot.val();
-const watchingStorage = JSON.stringify(data);
-localStorage.setItem('watching', watchingStorage)
-});
-}
-
-export const takeFavorite = (uid:string) => {
-    
-    const userRef = ref(database, 'users/' + uid );
-    onValue(userRef, (snapshot) => {
-      const favorites:any = [];
-  const data = snapshot.val();
-  for (const iterator in data) {
-    favorites.push(data[iterator])
-  }
-  const favoriteStorage = JSON.stringify(favorites);
-  localStorage.setItem('favorites', favoriteStorage)
-});
 }
 
 export const deleteFavorite = (uid:string, show:ShowDetailType) => {

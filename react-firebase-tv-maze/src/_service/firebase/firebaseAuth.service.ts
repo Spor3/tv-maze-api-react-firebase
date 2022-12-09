@@ -1,6 +1,5 @@
 import { app } from "./firebase.config";
-import { takeFavorite } from "./firebasesDb.service";
-import { getAuth, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 export const auth = getAuth(app);
 

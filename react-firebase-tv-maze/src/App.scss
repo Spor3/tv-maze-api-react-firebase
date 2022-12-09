@@ -14,6 +14,10 @@ $main-black: #18151f !default;
 $main-bg-dark: #110f16 !default;
 $main-bg-ligth: #f3f5f7 !default;
 
+.z-100 {
+  z-index: 100;
+}
+
 .cursor {
   cursor: pointer;
 }
@@ -112,11 +116,20 @@ nav {
     transition: transform 0.5s ease;
   }
 
-  svg {
+  .star {
     position: absolute;
     bottom: 45px;
     right: 10px;
     font-size: 2em;
+  }
+
+  .eye {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 2.5em;
+    z-index: 100;
+    border-radius: 50%;
   }
 }
 
@@ -279,6 +292,11 @@ radial-gradient(at 0% 0%, hsla(152,18%,7%,1) 0px, transparent 50%);
     .card-text {
       color: $main-white;
     }
+
+    .eye {
+      background-color: $main-bg-dark;
+      border: 3px solid $main-bg-dark;
+    }
   }
 
   nav {
@@ -339,6 +357,11 @@ radial-gradient(at 0% 0%, hsla(152,18%,7%,1) 0px, transparent 50%);
 
     .card-text {
       color: $main-black;
+    }
+
+    .eye {
+      background-color: $main-bg-ligth;
+      border: 3px solid $main-bg-ligth;
     }
   }
 

@@ -1,9 +1,10 @@
 import { Card, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ShowDetailType } from "../../_service/api/index.service";
-import { Star, StarFill } from 'react-bootstrap-icons';
+import { Star, StarFill, EyeFill } from 'react-bootstrap-icons';
 import useIsFavourite from "../../hooks/favourite/useIsFavourite.hook";
 import useFirebaseFavourite from "../../hooks/favourite/useFavourite.hook";
+import useIsWatching from "../../hooks/watching/useIsWatching.hook";
 
 type PropsCard =  {
     e:ShowDetailType,
@@ -15,12 +16,15 @@ const SearchCard = ({e,i}:PropsCard) => {
     const [ ,addFavorite, removeFavorite] = useFirebaseFavourite();
     const [ isFavorites ] = useIsFavourite(e);
 
+    const [ isWatching ] = useIsWatching(e);
+
   return (
     <Col className="d-flex justify-content-center mb-4">
         <Card
           style={{ width: "18rem", animationDelay: 25 * i + "ms" }}
           className="animate-in"
         >
+          {isWatching? <EyeFill className="eye" />:''}
           <Link to={"/search/" + e.id} className="overflow-hidden">
           <Card.Img variant="top" src={e.image?.medium} alt='Image Not Found' />
           </Link>
@@ -30,7 +34,7 @@ const SearchCard = ({e,i}:PropsCard) => {
             <Card.Text>{e.type?e.type:'Type Not Found'}</Card.Text>
           </Card.Body>
           </Link>
-          {isFavorites? <StarFill className="cursor" onClick={() => removeFavorite(e)} />: <Star className="cursor" onClick={() => addFavorite(e)} />}
+          {isFavorites? <StarFill className="cursor star" onClick={() => removeFavorite(e)} />: <Star className="cursor star" onClick={() => addFavorite(e)} />}
         </Card>
     </Col>
   );

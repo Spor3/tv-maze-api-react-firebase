@@ -1,6 +1,6 @@
 import { Navbar, Container, Nav } from "react-bootstrap"
 import { BubblyLink } from 'react-bubbly-transitions';
-import { Search, HeartFill, PersonCircle, PersonDashFill, XCircle } from 'react-bootstrap-icons';
+import { Search, HeartFill, PersonCircle, PersonDashFill, XCircle, EyeFill } from 'react-bootstrap-icons';
 import { logOut } from "../../_service/firebase/firebaseAuth.service";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
@@ -49,6 +49,7 @@ const MyNavbar = ({activeLink}:any) => {
           <Nav>
             <Nav.Link className={activeLink === 'search'?'active':''}><BubblyLink to='/'colorStart={`${ReduxSecondaryColor === 'yellow'?'#bdbb49': ReduxSecondaryColor === 'green'?'#79dd09':ReduxSecondaryColor === 'blue'?'#0076bd':'#bd150b'}`} colorEnd={theme === 'dark'?'#110f16':'#f3f5f7'} ><div className="d-flex align-items-center nav-link-font"><Search /><>Search</></div></BubblyLink></Nav.Link>
             <Nav.Link className={activeLink === 'favorite'?'active':''}><BubblyLink to='/favorites' colorStart={`${ReduxSecondaryColor === 'yellow'?'#bdbb49': ReduxSecondaryColor === 'green'?'#79dd09':ReduxSecondaryColor === 'blue'?'#0076bd':'#bd150b'}`} colorEnd={theme === 'dark'?'#110f16':'#f3f5f7'} ><div className="d-flex align-items-center nav-link-font"><HeartFill /><>Favorite</></div></BubblyLink></Nav.Link>
+            <Nav.Link className={activeLink === 'watching'?'active':''}><BubblyLink to='/watching' colorStart={`${ReduxSecondaryColor === 'yellow'?'#bdbb49': ReduxSecondaryColor === 'green'?'#79dd09':ReduxSecondaryColor === 'blue'?'#0076bd':'#bd150b'}`} colorEnd={theme === 'dark'?'#110f16':'#f3f5f7'} ><div className="d-flex align-items-center nav-link-font"><EyeFill /><>Watching</></div></BubblyLink></Nav.Link>
             <Nav.Link onClick={() => setModal(!modal)}><div style={{padding: '1px 6px'}}><div className="d-flex align-items-center nav-link-font"><PersonDashFill /><>Log Out</></div></div></Nav.Link>
             <Nav.Item className="d-flex align-items-center ms-auto"> <DropDownMenu /> </Nav.Item>
              <Nav.Item className="d-flex align-items-center"> <Theme /> </Nav.Item>

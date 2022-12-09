@@ -10,7 +10,6 @@ const useIsFavourite = (show:ShowDetailType): [
   const [ isFavorites, setIsFavorites ] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log(favourites)
     let boolSearch = false;
     favourites.forEach((element:ShowDetailType) => {
         if(element.id === show.id)
