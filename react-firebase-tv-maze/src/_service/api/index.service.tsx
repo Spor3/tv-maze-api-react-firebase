@@ -51,12 +51,6 @@ export type ShowDetailType = {
     type:string
 }
 
-/*  export type ShowType = {
-    id:number,
-    title:string,
-    image?: string
-    type: string
-} */
 
 export const getShowsBySearch = async (query: string) => {
     query = query.trim()

@@ -8,24 +8,12 @@ import { ArrowLeft } from 'react-bootstrap-icons';
 
 export async function loader({ params }: any) {     
 
-    const data = await getShowById(params.id) as ShowDetailType;
-    let isFavorite = false; 
-    console.log(data)
-    const storage = JSON.parse(localStorage.getItem('favorites') || 'null');
-      if(data !== null && storage !== null){
-         storage.forEach((e:ShowDetailType) =>{        
-            if(e.id === data.id){
-                isFavorite = true
-            }
-         })  
-        }   
+    const data = await getShowById(params.id) as ShowDetailType;  
 
-    return [data, isFavorite];
+    return data;
 }
 const Detail = () => {
-    const load:any = useLoaderData();
-    const showData = load[0];
-    const isFavorite = load[1];
+    const showData = useLoaderData() as ShowDetailType;
     const navigate = useNavigate();
 
     return (
@@ -34,7 +22,7 @@ const Detail = () => {
         <Container className="d-flex flex-column align-items-center min-h-85">
           <div className="d-flex align-items-center mt-5 justify-content-between w-100"><ArrowLeft className="page-title cursor animate-in" onClick={() => navigate(-1)}/><h2 className="mb-0 page-title me-2 animate-in">{showData.title.toUpperCase()}</h2></div>
           <div className="my-auto">
-          <CardDetail data={showData} isFavorite={isFavorite} animationDelay={1} favoritePage={false}/>
+          <CardDetail data={showData} animationDelay={1} />
           </div>
         </Container>
         </ProtectedRoute>);

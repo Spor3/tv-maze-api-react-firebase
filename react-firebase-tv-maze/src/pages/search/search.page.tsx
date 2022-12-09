@@ -7,6 +7,7 @@ import { Form, Row, Button, Container } from "react-bootstrap";
 import SearchCard from "../../components/detailCard/searchCard.component";
 import MyNavbar from '../../components/navbar/navbar.component';
 import { Search as SearchIcon } from 'react-bootstrap-icons';
+import useFirebaseFavourite from "../../hooks/favourite/useFavourite.hook";
 
 export default function Search() {
 

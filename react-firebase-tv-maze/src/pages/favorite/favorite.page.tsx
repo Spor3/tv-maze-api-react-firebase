@@ -1,4 +1,3 @@
-import { useLoaderData } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { ShowDetailType } from '../../_service/api/index.service'
 import DropDownFilter from "../../components/dropDown/dropDownFilter.component";
@@ -6,44 +5,38 @@ import MyNavbar from "../../components/navbar/navbar.component";
 import CardDetail from "../../components/detailCard/detailCard.component";
 import ProtectedRoute from "../../components/protectedPage/protectedPage.component";
 import { useEffect, useState } from "react";
+import useFirebaseFavourite from "../../hooks/favourite/useFavourite.hook";
 
-export async function loader() {
-  const favoriteData:ShowDetailType = JSON.parse(localStorage.getItem("favorites") || "");
-  
-
-  return favoriteData;
-}
 const Favorite = () => {
-  const [favoriteData , setFavoriteData] = useState<any>(useLoaderData());
+  const [ favourites ] = useFirebaseFavourite();
   const [filterData, setFilterData] = useState<any>();
-  
 
   useEffect(() => {
-    setFilterData(favoriteData.map((e:any, i:number) =>{
-      return <CardDetail key={e.id} data={e} isFavorite={true} animationDelay={i+3} favoritePage={true} />
+    setFilterData(favourites.map((e:any, i:number) =>{
+      return <CardDetail key={e.id} data={e} animationDelay={i+3} />
     }))
-  }, [])
+  }, [ favourites ])
 
   const handleNoFilter = () => {
-    setFilterData(favoriteData.map((e:any, i:number) =>{
-      return <CardDetail key={e.id} data={e} isFavorite={true} animationDelay={1} favoritePage={true} />
+    setFilterData(favourites.map((e:any, i:number) =>{
+      return <CardDetail key={e.id} data={e} animationDelay={1}  />
     }))
   }
 
   const handleSortAlphabetic = () => {
-       setFilterData(favoriteData.sort((a:ShowDetailType, b:ShowDetailType) => a.title.localeCompare(b.title)).map((e:any, i:number) =>{
-        return <CardDetail key={e.id} data={e} isFavorite={true} animationDelay={1} favoritePage={true} />
+       setFilterData(favourites.sort((a:ShowDetailType, b:ShowDetailType) => a.title.localeCompare(b.title)).map((e:any, i:number) =>{
+        return <CardDetail key={e.id} data={e} animationDelay={1}  />
       }));
   }
 
   const handleSortAlphabeticReverse = () => {
-    setFilterData(favoriteData.sort((a:ShowDetailType, b:ShowDetailType) => a.title.localeCompare(b.title)).reverse().map((e:any, i:number) =>{
-     return <CardDetail key={e.id} data={e} isFavorite={true} animationDelay={1} favoritePage={true} />
+    setFilterData(favourites.sort((a:ShowDetailType, b:ShowDetailType) => a.title.localeCompare(b.title)).reverse().map((e:any, i:number) =>{
+     return <CardDetail key={e.id} data={e} animationDelay={1}  />
    }));
   }
 
    const handleSortNumericReverse = () => {
-    setFilterData(favoriteData.filter((e:ShowDetailType) => !!e.avgRating).sort((a:ShowDetailType, b:ShowDetailType) => {  
+    setFilterData(favourites.filter((e:ShowDetailType) => !!e.avgRating).sort((a:ShowDetailType, b:ShowDetailType) => {  
       if(a.avgRating! > b.avgRating!)
         return 1
       else if(a.avgRating! < b.avgRating!)
@@ -51,12 +44,12 @@ const Favorite = () => {
       else
         return 0
     }).map((e:any, i:number) =>{
-     return <CardDetail key={e.id} data={e} isFavorite={true} animationDelay={1} favoritePage={true} />
+     return <CardDetail key={e.id} data={e} animationDelay={1} />
    }));
   }
 
   const handleSortNumeric = () => {
-    setFilterData(favoriteData.filter((e:ShowDetailType) => !!e.avgRating).sort((a:ShowDetailType, b:ShowDetailType) => {  
+    setFilterData(favourites.filter((e:ShowDetailType) => !!e.avgRating).sort((a:ShowDetailType, b:ShowDetailType) => {  
       if(a.avgRating! < b.avgRating!)
         return 1
       else if(a.avgRating! > b.avgRating!)
@@ -64,7 +57,7 @@ const Favorite = () => {
       else
         return 0
     }).map((e:any, i:number) =>{
-     return <CardDetail key={e.id} data={e} isFavorite={true} animationDelay={1} favoritePage={true} />
+     return <CardDetail key={e.id} data={e} animationDelay={1} />
    }));
   }
 
@@ -78,7 +71,7 @@ const Favorite = () => {
       <DropDownFilter handleSortAlphabetic={handleSortAlphabetic} handleSortAlphabeticReverse={handleSortAlphabeticReverse} handleSortNumeric={handleSortNumeric} handleSortNumericReverse={handleSortNumericReverse} handleNoFilter={handleNoFilter} />
     </div>
       <Container className="m-5">
-        {!!favoriteData? filterData:'NO Favorite'}
+        {!!favourites? filterData:'NO Favorite'}
         </Container>
       </Container>
     </ ProtectedRoute>

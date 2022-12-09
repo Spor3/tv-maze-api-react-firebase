@@ -11,7 +11,7 @@ import { selectSecondaryColor } from "./features/secondaryColor/secondaryColor";
 import Register from './pages/register/register.page'
 import Detail, { loader as dataLoader } from './pages/detail/detail.page'
 import Search from './pages/search/search.page'
-import Favorite, { loader as favoriteLoader} from './pages/favorite/favorite.page';
+import Favorite from './pages/favorite/favorite.page';
 import { BubblyContainer } from 'react-bubbly-transitions';
 import Login from './pages/login/login.page';
 import Watching from './pages/watching/watching.page';
@@ -41,7 +41,6 @@ const router = createBrowserRouter([
   {
     path: '/favorites',
     element:  <Favorite />,
-    loader: favoriteLoader
   },
   {
     path: '/watching',

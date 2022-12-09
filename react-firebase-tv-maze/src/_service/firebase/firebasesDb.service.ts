@@ -2,7 +2,7 @@ import { app } from "./firebase.config";
 import { getDatabase, ref, update, onValue, remove, set } from "firebase/database";
 import { ShowDetailType } from '../api/index.service'
 
-const database = getDatabase(app);
+export const database = getDatabase(app);
 
 export const addPrefer = (uid:string, show:ShowDetailType) => {
 
