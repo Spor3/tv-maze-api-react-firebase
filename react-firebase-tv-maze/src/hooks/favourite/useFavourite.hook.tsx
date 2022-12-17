@@ -17,7 +17,7 @@ const useFirebaseFavourite = (): [
   useEffect(() => {
     if (user) {
       const movies = ref(database, "users/" + user.uid);
-      onValue(movies, (snapshot) => {
+     const unsubscribe =  onValue(movies, (snapshot) => {
         const arrayData = [];
         const data = snapshot.val();
         for (const key in data) {
@@ -25,6 +25,10 @@ const useFirebaseFavourite = (): [
         }
         setFavourite(arrayData);
       });
+      
+      return () => {
+        unsubscribe()
+      }
     }
   }, [user]);
 

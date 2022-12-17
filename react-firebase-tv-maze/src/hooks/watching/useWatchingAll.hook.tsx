@@ -10,15 +10,18 @@ const useFirebaseAllWatching = (): [
   const [ allWatching, setAllWatching] = useState<ShowDetailType[]>([]);
 
   useEffect(() => {
-    const arrayData:ShowDetailType[] = [];
       const movies = ref(database, "watching/");
-      onValue(movies, (snapshot) => {
+      const unsubscribe = onValue(movies, (snapshot) => {
+        const arrayData:ShowDetailType[] = [];
         const data = snapshot.val();
         for (const key in data) {
           arrayData.push(data[key]);
         }
         setAllWatching(arrayData);
       });
+      return () => {
+        unsubscribe()
+      }
   }, []);
 
 

@@ -15,7 +15,6 @@ const SearchCard = ({e,i}:PropsCard) => {
 
     const [ ,addFavorite, removeFavorite] = useFirebaseFavourite();
     const [ isFavorites ] = useIsFavourite(e);
-
     const [ isWatching ] = useIsWatching(e);
 
   return (

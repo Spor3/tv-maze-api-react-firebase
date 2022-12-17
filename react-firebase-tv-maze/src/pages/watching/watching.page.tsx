@@ -15,8 +15,9 @@ const Watching = () => {
     const [ all, setAll ] = useState<any>();
 
     useEffect(() => {
+        console.log(allWatching)
         setAll(allWatching?.map((e:ShowDetailType,i:number) => <CardDetail key={e.id} data={e} animationDelay={i} />))
-    }, [ allWatching])
+    }, [allWatching])
 
     return(
         <ProtectedRoute>
